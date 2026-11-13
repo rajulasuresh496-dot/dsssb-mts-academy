@@ -5,318 +5,279 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DSSSB MTS Academy</title>
 <style>
+:root{--blue:#173b70;--light:#edf4ff;--gold:#f3b632;--green:#16834a}
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f3f6fc;color:#25324a}
-header{background:linear-gradient(120deg,#101e3d,#2458a5);color:white;text-align:center;padding:28px 12px}
-header h1{margin:0;font-size:27px}
-header p{color:#dce8ff}
-nav{display:flex;gap:7px;overflow-x:auto;background:white;padding:12px;position:sticky;top:0;z-index:5;box-shadow:0 2px 8px #0001}
-nav button{padding:11px 14px;border:0;border-radius:8px;background:#eaf0ff;color:#19417f;font-weight:bold;white-space:nowrap}
-nav button.active{background:#2563eb;color:white}
-main{max-width:1000px;margin:auto;padding:16px}
-.page{display:none}
-.page.active{display:block}
-.card,.hero,.question{background:white;padding:19px;border-radius:13px;margin-bottom:15px;box-shadow:0 3px 12px #0000000b}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:13px}
-h2,h3,h4{color:#183b75}
-.primary,.secondary{border:0;border-radius:8px;padding:12px 16px;font-weight:bold;cursor:pointer}
-.primary{background:#2563eb;color:white}
-.secondary{background:#eaf0ff;color:#19417f}
-input{padding:11px;border:1px solid #ccd5e3;border-radius:7px}
-.option{display:block;border:1px solid #d8e0ed;padding:12px;border-radius:8px;margin:9px 0;cursor:pointer}
-.option input{margin-right:9px}
-.stat{font-size:28px;font-weight:bold;color:#2563eb}
-.notice{background:#fff6d9;padding:13px;border-left:4px solid #e2a500;border-radius:7px}
-.small{font-size:13px;color:#64748b}
-.topic-btn{display:block;width:100%;text-align:left;margin:8px 0;padding:13px;background:#edf3ff;border:1px solid #d7e3fa;border-radius:8px;color:#183b75;font-weight:bold;cursor:pointer}
-.lesson-text{line-height:1.7}
-footer{text-align:center;padding:25px;color:#64748b}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f6fa;color:#202b3c}
+header{background:linear-gradient(120deg,#102b52,#2465a5);color:white;padding:24px 16px}
+header h1{margin:0 0 8px;font-size:25px}
+header p{margin:0;color:#dceaff}
+nav{display:flex;gap:8px;overflow-x:auto;background:white;padding:12px;position:sticky;top:0;z-index:5;box-shadow:0 2px 7px #0001}
+nav button{white-space:nowrap;border:0;background:#eaf0f8;padding:11px 15px;border-radius:8px;font-weight:bold;color:#173b70}
+nav button.active{background:#173b70;color:white}
+main{max-width:950px;margin:auto;padding:16px}
+.card{background:white;border-radius:13px;padding:17px;margin:12px 0;box-shadow:0 2px 9px #152b4b10}
+h2{color:#173b70;margin-top:5px}
+h3{color:#234e7e}
+.small{color:#65758b;font-size:13px}
+.subject-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px}
+.subject{border:1px solid #dce5f1;border-radius:12px;padding:15px;background:white;text-align:left}
+.subject strong{display:block;color:#173b70;font-size:16px;margin-bottom:6px}
+button{cursor:pointer}
+.primary{background:#173b70;color:white;border:0;padding:12px 17px;border-radius:8px;font-weight:bold}
+.secondary{background:#e9f0fa;color:#173b70;border:0;padding:11px 15px;border-radius:8px;font-weight:bold}
+.topic{display:flex;justify-content:space-between;align-items:center;gap:10px;border:1px solid #e0e7f0;padding:14px;border-radius:9px;margin:8px 0;background:white}
+.topic button{border:0;background:#edf3fb;color:#173b70;padding:9px;border-radius:7px;font-weight:bold}
+.lesson{line-height:1.65}
+.lesson p{line-height:1.7}
+.note{background:#eef5ff;border-left:4px solid #3477bd;padding:12px;border-radius:5px;margin:12px 0}
+.example{background:#f0faf4;border-left:4px solid #16834a;padding:12px;border-radius:5px;margin:12px 0}
+.warning{background:#fff8e8;border-left:4px solid #e3a323;padding:12px;border-radius:5px}
+.question{border:1px solid #dfe6ef;padding:14px;border-radius:10px;margin:12px 0}
+.option{display:block;padding:10px;margin:7px 0;border:1px solid #dce3ec;border-radius:7px}
+.option input{margin-right:8px}
+.feedback{padding:10px;margin-top:8px;border-radius:7px}
+.progress{height:10px;background:#e4eaf1;border-radius:20px;overflow:hidden}
+.progress div{height:100%;background:#16834a;width:0}
+.hidden{display:none}
+footer{text-align:center;color:#758196;padding:25px;font-size:12px}
 </style>
 </head>
 <body>
-
 <header>
 <h1>🎓 DSSSB MTS ACADEMY</h1>
-<p>Learn • Practice • Test • Improve</p>
-<p>Your Preparation Starts Here!</p>
+<p>Learn concepts • Understand rules • Practise questions • Improve your score</p>
 </header>
-
 <nav>
 <button class="active" onclick="showPage('home',this)">Home</button>
-<button onclick="showPage('study',this)">Study Room</button>
-<button onclick="showPage('pyq',this)">PYQ Room</button>
-<button onclick="showPage('mock',this)">Mock Test</button>
-<button onclick="showPage('progress',this)">Progress</button>
+<button onclick="showPage('course',this)">Study Room</button>
+<button onclick="showPage('progress',this)">My Progress</button>
 </nav>
-
 <main>
-
-<section id="home" class="page active">
-<div class="hero">
-<h2>Welcome to DSSSB MTS Academy!</h2>
-<p>Prepare step by step. Learn concepts, practise questions and improve your score.</p>
-<button class="primary" onclick="showPage('study')">Start Learning →</button>
+<section id="home">
+<div class="card">
+<h2>Welcome to your learning journey!</h2>
+<p>Start from the basics. Learn every concept step by step. Do not memorise answers without understanding the method.</p>
+<div class="progress"><div id="homeBar"></div></div>
+<p id="homeProgress" class="small">0 topics completed</p>
+<button class="primary" onclick="showPage('course',document.querySelectorAll('nav button')[1])">Start Learning →</button>
 </div>
-
-<div class="grid">
-<div class="card"><h3>📚 Study Room</h3><p>Learn all five subjects.</p><button class="secondary" onclick="showPage('study')">Open Study Room</button></div>
-<div class="card"><h3>📝 PYQ Room</h3><p>Previous year question library.</p><button class="secondary" onclick="showPage('pyq')">Open PYQ</button></div>
-<div class="card"><h3>⏱ Mock Test</h3><p>Test your preparation.</p><button class="secondary" onclick="showPage('mock')">Start Test</button></div>
-<div class="card"><h3>📊 Progress</h3><p>Check your test scores.</p><button class="secondary" onclick="showPage('progress')">View Progress</button></div>
-</div>
-</section>
-
-<section id="study" class="page">
-<div class="hero">
-<h2>📚 Study Room</h2>
-<p>Select a subject. Then choose a topic to read its lesson.</p>
-</div>
-
-<div class="grid">
-<div class="card"><h3>🧠 General Intelligence</h3><p>Reasoning and logical ability.</p><button class="secondary" onclick="openSubject('reasoning')">Study</button></div>
-<div class="card"><h3>🌍 General Awareness</h3><p>History, Geography, Polity and Science.</p><button class="secondary" onclick="openSubject('gk')">Study</button></div>
-<div class="card"><h3>➗ Numerical Ability</h3><p>Mathematics and calculations.</p><button class="secondary" onclick="openSubject('maths')">Study</button></div>
-<div class="card"><h3>📖 English Language</h3><p>Grammar and vocabulary.</p><button class="secondary" onclick="openSubject('english')">Study</button></div>
-<div class="card"><h3>हिंदी भाषा</h3><p>Hindi from beginner level.</p><button class="secondary" onclick="openSubject('hindi')">Study</button></div>
-</div>
-
-<div class="hero" id="lessonBox">
-<h3>Choose a Subject</h3>
-<p>Subject topics and lessons will appear here.</p>
+<h2>Choose Your Subject</h2>
+<div class="subject-grid" id="subjectGrid"></div>
+<div class="card">
+<h3>Our learning method</h3>
+<p>1. Basic concept</p><p>2. Important rules and formulas</p><p>3. Solved examples</p><p>4. Practice questions</p><p>5. Topic test and revision</p>
 </div>
 </section>
 
-<section id="pyq" class="page">
-<div class="hero">
-<h2>📝 Previous Year Questions</h2>
-<div class="notice">Official PYQs will be added only after verifying the exam year, date, shift and source. The practice questions in this website are not labelled as official PYQs.</div>
-<h3>PYQ Library</h3>
-<p>Verified papers will include:</p>
-<ul>
-<li>Exam name and year</li>
-<li>Exam date and shift</li>
-<li>Original question</li>
-<li>Correct answer and explanation</li>
-<li>Source reference</li>
-</ul>
-<p class="small">No verified official DSSSB MTS papers have been added yet.</p>
+<section id="course" class="hidden">
+<div class="card">
+<h2>Study Room</h2>
+<p>Select a subject and study topics in order.</p>
+<div id="subjectButtons" class="subject-grid"></div>
 </div>
+<div class="card">
+<div id="topicArea"><h3>Select a subject to begin.</h3></div>
+</div>
+<div id="lessonArea"></div>
 </section>
 
-<section id="mock" class="page">
-<div class="hero">
-<h2>⏱ Practice Mock Test</h2>
-<p>Demo test: 10 questions.</p>
-<div class="notice">Practice scoring: +1 for correct, -0.25 for wrong and 0 for unanswered. This is a demo test, not a confirmed official exam pattern.</div>
-<label>Your Name</label>
-<input id="student" placeholder="Enter your name" style="width:100%">
-<br><br>
-<button class="primary" onclick="startTest()">Start Test</button>
-</div>
-<div id="testArea"></div>
-</section>
-
-<section id="progress" class="page">
-<div class="hero">
-<h2>📊 My Progress</h2>
-<div class="grid">
-<div class="card"><p>Tests Completed</p><div class="stat" id="total">0</div></div>
-<div class="card"><p>Best Score</p><div class="stat" id="best">0</div></div>
-<div class="card"><p>Latest Score</p><div class="stat" id="latest">0</div></div>
-</div>
-<h3>Test History</h3>
-<div id="history">No tests completed.</div>
-<button class="secondary" onclick="clearData()">Clear History</button>
-<p class="small">History is saved only in this browser on this device.</p>
+<section id="progress" class="hidden">
+<div class="card">
+<h2>My Learning Progress</h2>
+<div class="progress"><div id="progressBar"></div></div>
+<p id="progressText"></p>
+<div id="progressDetails"></div>
+<button class="secondary" onclick="resetProgress()">Reset learning progress</button>
 </div>
 </section>
-
 </main>
-
-<footer>DSSSB MTS ACADEMY | Learn Daily • Improve Daily</footer>
+<footer>DSSSB MTS ACADEMY • Independent learning resource • Verify the latest official syllabus and exam notice.</footer>
 
 <script>
-function showPage(id,btn){
- document.querySelectorAll('.page').forEach(function(p){
-  p.classList.remove('active');
- });
- document.getElementById(id).classList.add('active');
-
- document.querySelectorAll('nav button').forEach(function(b){
-  b.classList.remove('active');
- });
- if(btn) btn.classList.add('active');
-
- if(id==='progress') updateProgress();
- if(id==='study'){
-  document.getElementById('lessonBox').innerHTML =
-  '<h3>📚 Select Your Subject</h3><p>Choose one of the five subjects above and press Study.</p>';
- }
-}
-
-const lessons={
- reasoning:{
-  title:"General Intelligence",
-  topics:[
-   ["Analogy","Analogy means finding a relationship between two things. Example: Bird : Fly :: Fish : Swim. A bird flies and a fish swims. Telugu: రెండు పదాల మధ్య సంబంధాన్ని గుర్తించడం Analogy."],
-   ["Number Series","A number series is a sequence of numbers following a pattern. Example: 2, 4, 6, 8, 10. Each number increases by 2. Next number is 12."],
-   ["Alphabet Series","Alphabet series questions follow a letter pattern. Example: A, C, E, G. We skip one letter each time. The next letter is I."],
-   ["Coding-Decoding","In coding-decoding, letters or words are changed according to a rule. Example: If A=1, B=2, C=3, then CAT = 3,1,20."],
-   ["Classification","Classification means finding the odd item. Example: Apple, Mango, Banana, Carrot. Carrot is different because it is a vegetable."],
-   ["Direction Sense","Direction questions test movement and position. Remember: North is up, South is down, East is right and West is left on a standard map."]
-  ]
- },
- gk:{
-  title:"General Awareness",
-  topics:[
-   ["Indian Constitution","The Constitution of India came into effect on 26 January 1950. It is the supreme law of India. Telugu: భారత రాజ్యాంగం దేశంలోని అత్యున్నత చట్టం."],
-   ["Fundamental Rights","Fundamental Rights are basic rights guaranteed by the Constitution. They are included in Part III of the Constitution."],
-   ["Indian History","Ancient, Medieval and Modern History are major sections of Indian History. Study important rulers, movements and dates."],
-   ["Indian Geography","India is located in South Asia. The Himalayas are in the north, the Indian Ocean is in the south."],
-   ["General Science","General Science includes Physics, Chemistry and Biology. Study basic concepts, everyday science and important discoveries."],
-   ["Indian Economy","Learn basic concepts such as GDP, inflation, banking, budget, taxes and employment."]
-  ]
- },
- maths:{
-  title:"Numerical Ability",
-  topics:[
-   ["Number System","A number system is a way of representing numbers. Natural numbers: 1,2,3... Whole numbers: 0,1,2,3... Integers include negative numbers too."],
-   ["Percentage","Percentage means per hundred. Formula: Percentage = (Part / Total) × 100. Example: 20% of 200 = 20/100 × 200 = 40."],
-   ["Ratio","Ratio compares two quantities. Example: 2:3 means 2 parts compared with 3 parts."],
-   ["Average","Average = Sum of observations / Number of observations. Example: Average of 10, 20, 30 = 60/3 = 20."],
-   ["Profit and Loss","Profit = Selling Price - Cost Price. Loss = Cost Price - Selling Price. Profit percentage = Profit / Cost Price × 100."],
-   ["Simple Interest","Simple Interest = (Principal × Rate × Time) / 100. Example: P=1000, R=5%, T=2 years. SI = 100."]
-  ]
- },
- english:{
-  title:"English Language",
-  topics:[
-   ["Parts of Speech","There are eight traditional parts of speech: noun, pronoun, verb, adjective, adverb, preposition, conjunction and interjection."],
-   ["Noun","A noun is the name of a person, place, animal or thing. Examples: Ravi, Delhi, dog, book."],
-   ["Pronoun","A pronoun is used instead of a noun. Examples: I, we, you, he, she, it, they."],
-   ["Verb","A verb expresses an action or state. Examples: run, write, read, is, are."],
-   ["Articles","The articles are A, An and The. Use 'an' before a vowel sound, such as an apple. Use 'a' before a consonant sound, such as a book."],
-   ["Tenses","The three main tenses are Present, Past and Future. Example: I study, I studied, I will study."]
-  ]
- },
- hindi:{
-  title:"Hindi Language - Beginner",
-  topics:[
-   ["Hindi Alphabet","स्वर (Vowels): अ, आ, इ, ई, उ, ऊ, ऋ, ए, ऐ, ओ, औ. व्यंजन (Consonants): क, ख, ग, घ, च, छ, ज, झ."],
-   ["Common Words","पानी = Water, खाना = Food, घर = House, किताब = Book, आदमी = Man, लड़की = Girl."],
-   ["Noun - संज्ञा","किसी व्यक्ति, स्थान या वस्तु के नाम को संज्ञा कहते हैं। Example: राम, दिल्ली, किताब."],
-   ["Pronoun - सर्वनाम","संज्ञा के स्थान पर प्रयोग होने वाले शब्द सर्वनाम कहलाते हैं। Examples: मैं, हम, तुम, वह, वे."],
-   ["Verb - क्रिया","जिस शब्द से किसी काम का करना या होना पता चले, उसे क्रिया कहते हैं। Examples: खाना, पढ़ना, जाना."],
-   ["Antonyms - विलोम शब्द","दिन - रात, अच्छा - बुरा, छोटा - बड़ा, नया - पुराना."]
-  ]
- }
-};
-
-function openSubject(subject){
- const data=lessons[subject];
- let html="<h2>📚 "+data.title+"</h2><p>Select a topic to read the lesson:</p>";
- data.topics.forEach(function(topic,index){
-  html+="<button class='topic-btn' onclick='openLesson(\""+subject+"\","+index+")'>📖 "+(index+1)+". "+topic[0]+"</button>";
- });
- document.getElementById('lessonBox').innerHTML=html;
- document.getElementById('lessonBox').scrollIntoView({behavior:'smooth'});
-}
-
-function openLesson(subject,index){
- const topic=lessons[subject].topics[index];
- let html="<h2>"+topic[0]+"</h2>";
- html+="<div class='lesson-text'><p>"+topic[1]+"</p></div>";
- html+="<button class='secondary' onclick='openSubject(\""+subject+"\")'>← Back to Topics</button>";
- document.getElementById('lessonBox').innerHTML=html;
- document.getElementById('lessonBox').scrollIntoView({behavior:'smooth'});
-}
-
-const questions=[
- {q:"Find the next number: 2, 4, 6, 8, ?",o:["9","10","12","14"],a:1,e:"Each number increases by 2. Answer: 10."},
- {q:"What is the capital of India?",o:["Mumbai","Chennai","New Delhi","Kolkata"],a:2,e:"New Delhi is the capital of India."},
- {q:"What is 20% of 200?",o:["20","30","40","50"],a:2,e:"20/100 × 200 = 40."},
- {q:"Choose the plural of Child.",o:["Childs","Children","Childes","Childrens"],a:1,e:"Children is the plural of child."},
- {q:"'पानी' means:",o:["Food","Water","House","Book"],a:1,e:"पानी means water."},
- {q:"Which is the largest planet?",o:["Earth","Mars","Jupiter","Venus"],a:2,e:"Jupiter is the largest planet in our Solar System."},
- {q:"A, C, E, G, ?",o:["H","I","J","K"],a:1,e:"The series skips one letter. The next letter is I."},
- {q:"Average of 10, 20 and 30?",o:["10","15","20","25"],a:2,e:"(10+20+30)/3 = 20."},
- {q:"Which is a noun?",o:["Run","Beautiful","School","Quickly"],a:2,e:"School is the name of a place, so it is a noun."},
- {q:"भारत का अर्थ क्या है?",o:["India","Water","Book","House"],a:0,e:"भारत means India."}
-];
-
-let answers=[];
-
-function startTest(){
- answers=Array(questions.length).fill(null);
- let html="<div class='hero'><h2>Practice Test</h2><p>Questions: "+questions.length+"</p>";
- questions.forEach(function(q,i){
-  html+="<div class='question'><b>Q"+(i+1)+". "+q.q+"</b>";
-  q.o.forEach(function(v,j){
-   html+="<label class='option'><input type='radio' name='q"+i+"' onchange='selectAnswer("+i+","+j+")'>"+v+"</label>";
-  });
-  html+="</div>";
- });
- html+="<button class='primary' onclick='submitTest()'>Submit Test</button></div>";
- document.getElementById('testArea').innerHTML=html;
- document.getElementById('testArea').scrollIntoView({behavior:'smooth'});
-}
-
-function selectAnswer(i,j){
- answers[i]=j;
-}
-
-function submitTest(){
- let correct=0,wrong=0,unanswered=0;
- questions.forEach(function(q,i){
-  if(answers[i]===null) unanswered++;
-  else if(answers[i]===q.a) correct++;
-  else wrong++;
- });
- let score=correct-(wrong*0.25);
- let record={
-  name:document.getElementById('student').value.trim()||'Student',
-  date:new Date().toLocaleString(),
-  correct:correct,
-  wrong:wrong,
-  unanswered:unanswered,
-  score:Number(score.toFixed(2))
- };
- let data=JSON.parse(localStorage.getItem('academyHistory')||'[]');
- data.push(record);
- localStorage.setItem('academyHistory',JSON.stringify(data));
-
- let html="<div class='hero'><h2>🎉 Your Result</h2>";
- html+="<div class='stat'>"+record.score+" / "+questions.length+"</div>";
- html+="<p>Correct: "+correct+"</p><p>Wrong: "+wrong+"</p><p>Unanswered: "+unanswered+"</p><hr><h3>Answer Review</h3>";
- questions.forEach(function(q,i){
-  html+="<div class='question'><b>Q"+(i+1)+". "+q.q+"</b>";
-  html+="<p>Your answer: "+(answers[i]===null?'Not answered':q.o[answers[i]])+"</p>";
-  html+="<p>Correct answer: <b>"+q.o[q.a]+"</b></p>";
-  html+="<p>"+q.e+"</p></div>";
- });
- html+="<button class='primary' onclick='startTest()'>Try Again</button></div>";
- document.getElementById('testArea').innerHTML=html;
-}
-
-function updateProgress(){
- let data=JSON.parse(localStorage.getItem('academyHistory')||'[]');
- document.getElementById('total').textContent=data.length;
- document.getElementById('best').textContent=data.length?Math.max(...data.map(x=>x.score)):'0';
- document.getElementById('latest').textContent=data.length?data[data.length-1].score:'0';
- document.getElementById('history').innerHTML=data.length?
- data.slice().reverse().map(function(x){
-  return "<div class='question'><b>"+x.name+"</b><p>"+x.date+"</p><p>Score: "+x.score+" | Correct: "+x.correct+" | Wrong: "+x.wrong+"</p></div>";
- }).join(''):"No tests completed.";
-}
-
-function clearData(){
- if(confirm('Delete all test history?')){
-  localStorage.removeItem('academyHistory');
-  updateProgress();
- }
-}
-
-updateProgress();
-</script>
-</body>
-</html>
+const subjects = [
+{
+id:"reasoning",name:"Reasoning Ability",icon:"🧠",topics:[
+{
+title:"Analogy",
+concept:"Analogy means identifying the relationship between two things and applying the same relationship to another pair. First understand how the first pair is connected. Then find the option with the same connection.",
+rules:["Identify the exact relationship, not just similar-looking words.","Check whether the relationship is based on use, category, part-whole, opposite, or sequence.","For number analogy, compare addition, subtraction, multiplication, division or squares."],
+examples:[["Bird : Fly :: Fish : ?","Fish move by swimming. Answer: Swim.","The relationship is animal and its movement."],["Doctor : Hospital :: Teacher : ?","A doctor works in a hospital. A teacher works in a school. Answer: School.","The relationship is profession and workplace."]],
+questions:[
+["Pen : Write :: Knife : ?","Cut","Eat","Walk","Read",0,"A pen is used to write; a knife is used to cut."],
+["Puppy : Dog :: Kitten : ?","Cow","Cat","Horse","Goat",1,"A puppy is a young dog; a kitten is a young cat."],
+["2 : 4 :: 5 : ?","10","15","25","20",2,"The second number is the square of the first number."]
+]},
+{
+title:"Classification / Odd One Out",
+concept:"Classification questions ask you to find the item that does not belong to a group. Compare all options using one common property.",
+rules:["Check category: fruits, animals, tools, numbers, letters.","For numbers, check even/odd, prime/composite, squares and cubes.","For letters, compare alphabet positions."],
+examples:[["Apple, Mango, Banana, Carrot","Carrot is the odd one because the others are fruits.","Carrot is a vegetable."],["2, 4, 6, 9","9 is odd; the remaining numbers are even.","Check divisibility by 2."]],
+questions:[
+["Choose the odd one:","Rose","Lotus","Mango","Lily",2,"Mango is a fruit; the others are flowers."],
+["Choose the odd number:","12","18","21","24",2,"21 is odd; all others are even."],
+["Choose the odd one:","Square","Triangle","Circle","Table",3,"Table is not a geometrical shape."]
+]},
+{
+title:"Number Series",
+concept:"A number series is an ordered list of numbers following a pattern. Find the rule connecting consecutive numbers before choosing the next number.",
+rules:["Check the difference between consecutive numbers.","If differences do not match, check multiplication or division.","Check squares, cubes, alternate patterns and mixed operations."],
+examples:[["2, 4, 6, 8, ?","Each number increases by 2. Answer: 10.","Differences: +2, +2, +2."],["3, 6, 12, 24, ?","Each number is multiplied by 2. Answer: 48.","Pattern: ×2."]],
+questions:[
+["5, 10, 15, 20, ?","22","25","30","35",1,"Add 5 each time."],
+["2, 6, 18, 54, ?","108","162","216","100",1,"Multiply by 3 each time."],
+["1, 4, 9, 16, ?","20","24","25","36",2,"These are squares: 1², 2², 3², 4², 5²."]
+]},
+{
+title:"Coding and Decoding",
+concept:"In coding-decoding, letters or words are changed according to a hidden rule. Find the rule using the given example and apply it to the new word.",
+rules:["Alphabet positions: A=1, B=2, ... Z=26.","Check whether letters move forward or backward.","Check reverse order, alternate shifts and letter-number patterns."],
+examples:[["If CAT becomes DBU, how?","C→D (+1), A→B (+1), T→U (+1).","Each letter moves one step forward."],["If A=1, B=2, what is DOG?","D=4, O=15, G=7.","Use alphabet positions."]],
+questions:[
+["If CAT is coded as DBU, DOG is coded as?","EPH","CNG","EOG","FPH",0,"Each letter moves one position forward."],
+["If A=1, C=3, E=5, then G=?","6","7","8","9",1,"Alphabet position of G is 7."],
+["The opposite letter of A in the alphabet pair system is?","Z","Y","X","W",0,"A and Z are opposite ends of the alphabet."]
+]},
+{
+title:"Blood Relations",
+concept:"Blood relation questions test family relationships. Read each statement carefully and draw a small family tree when necessary.",
+rules:["Brother and sister are siblings.","Father's or mother's brother is uncle.","Father's or mother's sister is aunt.","A parent's parent is grandparent."],
+examples:[["Ravi is the son of Sita. Sita is Ravi's?","Mother.","The statement directly gives the relationship."],["A is B's father. B is C's mother. A is C's?","Grandfather.","A is the father of C's mother."]],
+questions:[
+["Your mother's brother is your?","Father","Uncle","Cousin","Grandfather",1,"Mother's brother is maternal uncle."],
+["Your father's mother is your?","Aunt","Sister","Grandmother","Mother",2,"Father's mother is grandmother."],
+["A is the brother of B. B is the mother of C. A is C's?","Father","Uncle","Brother","Grandfather",1,"Mother's brother is uncle."]
+]},
+{
+title:"Direction Sense",
+concept:"Direction questions test movement and position. Imagine a compass and track every turn carefully.",
+rules:["North is opposite South.","East is opposite West.","Facing North: right is East, left is West.","Facing South: right is West, left is East."],
+examples:[["Facing North, turn right. Which direction?","East.","Right from North is East."],["Walk 3 km North and 3 km South. Final position?","Starting point.","The opposite movements cancel each other."]],
+questions:[
+["Facing North, turn left. Direction?","West","East","South","North",0,"Left from North is West."],
+["Facing South, turn left. Direction?","West","East","North","South",1,"Left from South is East."],
+["Walk 5 km East and then 5 km West. Where are you?","5 km East","Starting point","5 km West","North",1,"Equal opposite movements cancel out."]
+]}
+]},
+{
+id:"maths",name:"Numerical Ability",icon:"➗",topics:[
+{
+title:"Number System",
+concept:"A number system is the method of representing numbers. Natural numbers are counting numbers. Whole numbers include zero. Integers include negative numbers, zero and positive numbers.",
+rules:["Natural numbers: 1, 2, 3, ...","Whole numbers: 0, 1, 2, 3, ...","Integers: ..., -2, -1, 0, 1, 2, ...","Even numbers are divisible by 2. Odd numbers are not divisible by 2.","A prime number has exactly two factors: 1 and itself."],
+examples:[["Is 7 prime?","Yes. Its only factors are 1 and 7.","A prime number has exactly two factors."],["Is 1 a prime number?","No. It has only one factor.","Prime numbers must have exactly two factors."]],
+questions:[
+["Which is a whole number?","-2","0","-5","-1",1,"Whole numbers include zero and positive counting numbers."],
+["Which is a prime number?","9","15","17","21",2,"17 has only two factors: 1 and 17."],
+["Smallest natural number is?","0","1","-1","2",1,"Natural numbers start from 1 in the standard school definition."]
+]},
+{
+title:"BODMAS",
+concept:"BODMAS tells us the correct order for solving expressions containing different operations. Brackets first, then Orders (powers/roots), Division and Multiplication from left to right, then Addition and Subtraction from left to right.",
+rules:["B – Brackets","O – Orders (powers and roots)","D and M – Division and Multiplication, left to right","A and S – Addition and Subtraction, left to right","Do not always perform multiplication before division; follow left-to-right order."],
+examples:[["8 + 4 × 3","First 4 × 3 = 12. Then 8 + 12 = 20.","Answer = 20."],["(10 + 2) ÷ 3","Bracket = 12. Then 12 ÷ 3 = 4.","Answer = 4."]],
+questions:[
+["8 + 4 × 3 = ?","36","20","24","12",1,"Multiplication first: 4×3=12; 8+12=20."],
+["(15 - 5) × 2 = ?","10","15","20","25",2,"Bracket first: 10×2=20."],
+["24 ÷ 6 × 2 = ?","2","8","12","4",1,"Division and multiplication left to right: 24÷6=4; 4×2=8."]
+]},
+{
+title:"Percentage",
+concept:"Percentage means per hundred. The symbol % means out of 100. Percentage is used in marks, discounts, profit, loss and many exam calculations.",
+rules:["x% = x/100.","Percentage = (Part / Total) × 100.","x% of a number = (x/100) × number.","To convert a fraction into percentage, multiply by 100."],
+examples:[["Find 20% of 150.","20/100 × 150 = 30.","Answer = 30."],["30 out of 50 is what percentage?","30/50 × 100 = 60%.","Answer = 60%."]],
+questions:[
+["10% of 200 is?","10","20","30","40",1,"10/100×200 = 20."],
+["25% of 80 is?","10","15","20","25",2,"25/100×80 = 20."],
+["40 out of 100 is what percentage?","20%","30%","40%","50%",2,"40/100×100 = 40%."]
+]},
+{
+title:"Ratio and Proportion",
+concept:"A ratio compares two quantities of the same kind. It is written as a:b. A proportion means two ratios are equal.",
+rules:["Simplify a ratio by dividing both terms by their common factor.","In a:b = c:d, a×d = b×c.","Keep units the same before comparing quantities."],
+examples:[["Simplify 10:15.","Divide both terms by 5. Answer = 2:3.","10÷5 : 15÷5 = 2:3."],["If 2:3 = 4:x, find x.","2x = 12, so x = 6.","Cross multiplication."]],
+questions:[
+["Simplify 12:18.","2:3","3:2","4:5","6:9",0,"Divide both numbers by 6."],
+["If 2:5 = 4:x, x is?","5","8","10","12",2,"2x=20, so x=10."],
+["The ratio 15:20 in simplest form is?","2:3","3:4","4:3","5:6",1,"Divide both terms by 5."]
+]},
+{
+title:"Average",
+concept:"Average is the equal share or central value of a group of numbers. It is calculated by dividing the total by the number of values.",
+rules:["Average = Sum of observations ÷ Number of observations.","Sum = Average × Number of observations.","When one value is added, calculate the new total carefully."],
+examples:[["Average of 2, 4, 6?","Sum = 12. Count = 3. Average = 12/3 = 4.","Answer = 4."],["Average of 10 and 20?","30÷2 = 15.","Answer = 15."]],
+questions:[
+["Average of 5, 10, 15 is?","5","10","15","20",1,"30÷3 = 10."],
+["Average of 4, 6, 8, 10 is?","6","7","8","9",1,"Sum 28 divided by 4 = 7."],
+["Sum of 5 numbers is 50. Average is?","5","10","15","20",1,"50÷5 = 10."]
+]},
+{
+title:"Profit and Loss",
+concept:"Profit occurs when selling price is greater than cost price. Loss occurs when selling price is less than cost price.",
+rules:["Profit = Selling Price − Cost Price.","Loss = Cost Price − Selling Price.","Profit% = Profit ÷ Cost Price × 100.","Loss% = Loss ÷ Cost Price × 100."],
+examples:[["CP=100, SP=120. Profit?","120−100=20. Profit = 20.","Profit percentage = 20/100×100 = 20%."],["CP=200, SP=180. Loss?","200−180=20. Loss = 20.","Loss percentage = 10%."]],
+questions:[
+["CP=100, SP=150. Profit is?","25","40","50","60",2,"150−100 = 50."],
+["CP=200, SP=180. Loss is?","10","20","30","40",1,"200−180 = 20."],
+["CP=100, profit=20. SP is?","110","120","130","140",1,"Selling price = CP + Profit = 120."]
+]}
+]},
+{
+id:"english",name:"English Language",icon:"📘",topics:[
+{
+title:"Parts of Speech",
+concept:"Parts of speech are categories of words according to their function in a sentence. The main categories are noun, pronoun, verb, adjective, adverb, preposition, conjunction and interjection.",
+rules:["Noun: name of a person, place, animal or thing.","Pronoun: used instead of a noun.","Verb: action or state.","Adjective: describes a noun.","Adverb: describes a verb, adjective or another adverb.","Preposition: shows relationship.","Conjunction: joins words or sentences.","Interjection: expresses sudden feeling."],
+examples:[["Ravi plays cricket.","Ravi = Noun; plays = Verb; cricket = Noun.","Identify the work of each word."],["She is beautiful.","She = Pronoun; beautiful = Adjective.","Beautiful describes She." ]],
+questions:[
+["Identify the noun: The boy runs.","The","Boy","Runs","Fast",1,"Boy names a person."],
+["Identify the verb: Birds fly.","Birds","The","Fly","Blue",2,"Fly expresses an action."],
+["Identify the adjective: A tall man.","A","Man","Tall","Walks",2,"Tall describes the noun man."]
+]},
+{
+title:"Articles",
+concept:"Articles are words used before nouns. English has three articles: a, an and the. A and an are indefinite articles; the is a definite article.",
+rules:["Use 'a' before a consonant sound: a book, a university.","Use 'an' before a vowel sound: an apple, an hour.","Use 'the' for a particular or already known noun.","Article choice depends on sound, not only spelling."],
+examples:[["___ apple","An apple. Apple begins with a vowel sound."],["___ sun","The sun. It is unique in our usual context."]],
+questions:[
+["I ate ___ orange.","a","an","the","no article",1,"Orange begins with a vowel sound."],
+["He is ___ university student.","an","a","the","no article",1,"University begins with a 'yu' consonant sound."],
+["___ moon shines at night.","A","An","The","No article",2,"The moon is treated as unique."]
+]},
+{
+title:"Tenses",
+concept:"Tense shows the time of an action. The three main tenses are present, past and future. Each has simple, continuous, perfect and perfect continuous forms.",
+rules:["Simple Present: subject + base verb (add s/es with he/she/it).","Simple Past: subject + past form of verb.","Simple Future: subject + will + base verb.","Present Continuous: am/is/are + verb-ing."],
+examples:[["She ___ to school every day.","She goes to school every day. Simple present; 'she' takes goes."],["They ___ playing now.","They are playing now. Present continuous."]],
+questions:[
+["He ___ cricket every day.","play","plays","playing","played",1,"With he/she/it in simple present, add s/es."],
+["I ___ a movie yesterday.","watch","watches","watched","watching",2,"Yesterday indicates simple past."],
+["She is ___ a book.","read","reads","reading","readed",2,"Present continuous uses verb-ing."]
+]},
+{
+title:"Subject Verb Agreement",
+concept:"A verb must agree with its subject in number and person. A singular subject generally takes a singular verb; a plural subject generally takes a plural verb.",
+rules:["He/She/It + is; I + am; You/We/They + are.","In simple present, he/she/it usually takes verb+s/es.","Two subjects joined by 'and' generally take a plural verb.","Words between subject and verb do not change the main subject."],
+examples:[["The boy ___ happy.","The boy is happy. Singular subject."],["The boys ___ happy.","The boys are happy. Plural subject."]],
+questions:[
+["She ___ a teacher.","are","am","is","be",2,"She is singular."],
+["They ___ ready.","is","am","are","be",2,"They is plural."],
+["Ram and Ravi ___ friends.","is","am","are","was",2,"Two subjects joined by and generally take a plural verb."]
+]},
+{
+title:"Prepositions",
+concept:"Prepositions show the relationship between a noun or pronoun and another word. They often describe place, time, direction or position.",
+rules:["At: a specific point or time.","In: inside an area; months, years and longer periods.","On: a surface; days and dates.","Under: below something.","Between: generally used for two clearly identified items."],
+examples:[["The book is ___ the table.","The book is on the table. Surface."],["She was born ___ 2005.","In 2005. Use in with years."]],
+questions:[
+["The book is ___ the table.","in","on","at","under",1,"On describes a surface."],
+["He was born ___ 2001.","at","on","in","by",2,"Use in with years."],
+["The class starts ___ 9 AM.","in","on","at","from",2,"At is used for a specific time."]
+]},
+{
+title:"Synonyms and Antonyms",
+concept:"A synonym is a word with the same or nearly the same meaning. An antonym is a word with the opposite meaning.",
+rules:["Read the full word and sentence context.","Check whether the question asks for similar or opposite meaning.","Learn words with example sentences, not as isolated lists."],
+examples:[["Happy – synonym","Joyful.","Both express a positive feeling."],["Hot – antonym","Cold.","They have opposite meanings."]],
+questions:[
+["Choose the synonym of Happy.","Sad","Joyful","Angry","Weak",1,"Joyful has a similar meaning."],
+["Choose the antonym of Ancient.","Old","Historic","Modern","Past",2,"Modern is oppos
