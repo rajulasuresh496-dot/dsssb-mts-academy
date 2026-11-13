@@ -6,28 +6,30 @@
 <title>DSSSB MTS Academy</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f2f5fb;color:#25324a}
+body{margin:0;font-family:Arial,sans-serif;background:#f3f6fc;color:#25324a}
 header{background:linear-gradient(120deg,#101e3d,#2458a5);color:white;text-align:center;padding:28px 12px}
 header h1{margin:0;font-size:27px}
-header p{margin-bottom:0;color:#dce8ff}
-nav{display:flex;gap:7px;overflow-x:auto;background:white;padding:12px;position:sticky;top:0;z-index:5}
+header p{color:#dce8ff}
+nav{display:flex;gap:7px;overflow-x:auto;background:white;padding:12px;position:sticky;top:0;z-index:5;box-shadow:0 2px 8px #0001}
 nav button{padding:11px 14px;border:0;border-radius:8px;background:#eaf0ff;color:#19417f;font-weight:bold;white-space:nowrap}
 nav button.active{background:#2563eb;color:white}
-main{max-width:950px;margin:auto;padding:16px}
+main{max-width:1000px;margin:auto;padding:16px}
 .page{display:none}
 .page.active{display:block}
 .card,.hero,.question{background:white;padding:19px;border-radius:13px;margin-bottom:15px;box-shadow:0 3px 12px #0000000b}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:13px}
-h2,h3{color:#183b75}
+h2,h3,h4{color:#183b75}
 .primary,.secondary{border:0;border-radius:8px;padding:12px 16px;font-weight:bold;cursor:pointer}
 .primary{background:#2563eb;color:white}
 .secondary{background:#eaf0ff;color:#19417f}
 input{padding:11px;border:1px solid #ccd5e3;border-radius:7px}
-.option{display:block;border:1px solid #d8e0ed;padding:12px;border-radius:8px;margin:9px 0}
+.option{display:block;border:1px solid #d8e0ed;padding:12px;border-radius:8px;margin:9px 0;cursor:pointer}
 .option input{margin-right:9px}
 .stat{font-size:28px;font-weight:bold;color:#2563eb}
 .notice{background:#fff6d9;padding:13px;border-left:4px solid #e2a500;border-radius:7px}
 .small{font-size:13px;color:#64748b}
+.topic-btn{display:block;width:100%;text-align:left;margin:8px 0;padding:13px;background:#edf3ff;border:1px solid #d7e3fa;border-radius:8px;color:#183b75;font-weight:bold;cursor:pointer}
+.lesson-text{line-height:1.7}
 footer{text-align:center;padding:25px;color:#64748b}
 </style>
 </head>
@@ -40,11 +42,11 @@ footer{text-align:center;padding:25px;color:#64748b}
 </header>
 
 <nav>
-<button class="active" onclick="show('home',this)">Home</button>
-<button onclick="show('study',this)">Study Room</button>
-<button onclick="show('pyq',this)">PYQ Room</button>
-<button onclick="show('mock',this)">Mock Test</button>
-<button onclick="show('progress',this)">Progress</button>
+<button class="active" onclick="showPage('home',this)">Home</button>
+<button onclick="showPage('study',this)">Study Room</button>
+<button onclick="showPage('pyq',this)">PYQ Room</button>
+<button onclick="showPage('mock',this)">Mock Test</button>
+<button onclick="showPage('progress',this)">Progress</button>
 </nav>
 
 <main>
@@ -53,43 +55,60 @@ footer{text-align:center;padding:25px;color:#64748b}
 <div class="hero">
 <h2>Welcome to DSSSB MTS Academy!</h2>
 <p>Prepare step by step. Learn concepts, practise questions and improve your score.</p>
-<button class="primary" onclick="show('study')">Start Learning →</button>
+<button class="primary" onclick="showPage('study')">Start Learning →</button>
 </div>
+
 <div class="grid">
-<div class="card"><h3>📚 Study Room</h3><p>Learn all five subjects.</p><button class="secondary" onclick="show('study')">Open</button></div>
-<div class="card"><h3>📝 PYQ Room</h3><p>Previous year question library.</p><button class="secondary" onclick="show('pyq')">Open</button></div>
-<div class="card"><h3>⏱ Mock Test</h3><p>Test your preparation.</p><button class="secondary" onclick="show('mock')">Start</button></div>
-<div class="card"><h3>📊 Progress</h3><p>Check your test scores.</p><button class="secondary" onclick="show('progress')">View</button></div>
+<div class="card"><h3>📚 Study Room</h3><p>Learn all five subjects.</p><button class="secondary" onclick="showPage('study')">Open Study Room</button></div>
+<div class="card"><h3>📝 PYQ Room</h3><p>Previous year question library.</p><button class="secondary" onclick="showPage('pyq')">Open PYQ</button></div>
+<div class="card"><h3>⏱ Mock Test</h3><p>Test your preparation.</p><button class="secondary" onclick="showPage('mock')">Start Test</button></div>
+<div class="card"><h3>📊 Progress</h3><p>Check your test scores.</p><button class="secondary" onclick="showPage('progress')">View Progress</button></div>
 </div>
 </section>
 
 <section id="study" class="page">
-<div class="hero"><h2>📚 Study Room</h2><p>Select a subject to see its topics.</p></div>
-<div class="grid">
-<div class="card"><h3>General Intelligence</h3><p>Reasoning and logical ability.</p><button class="secondary" onclick="lesson('reasoning')">Study</button></div>
-<div class="card"><h3>General Awareness</h3><p>History, Geography, Polity, Science.</p><button class="secondary" onclick="lesson('gk')">Study</button></div>
-<div class="card"><h3>Numerical Ability</h3><p>Mathematics and calculations.</p><button class="secondary" onclick="lesson('maths')">Study</button></div>
-<div class="card"><h3>English Language</h3><p>Grammar and vocabulary.</p><button class="secondary" onclick="lesson('english')">Study</button></div>
-<div class="card"><h3>Hindi Language</h3><p>Hindi from beginner level.</p><button class="secondary" onclick="lesson('hindi')">Study</button></div>
+<div class="hero">
+<h2>📚 Study Room</h2>
+<p>Select a subject. Then choose a topic to read its lesson.</p>
 </div>
-<div class="hero" id="lessonBox"><h3>Choose a subject</h3><p>Topics will appear here.</p></div>
+
+<div class="grid">
+<div class="card"><h3>🧠 General Intelligence</h3><p>Reasoning and logical ability.</p><button class="secondary" onclick="openSubject('reasoning')">Study</button></div>
+<div class="card"><h3>🌍 General Awareness</h3><p>History, Geography, Polity and Science.</p><button class="secondary" onclick="openSubject('gk')">Study</button></div>
+<div class="card"><h3>➗ Numerical Ability</h3><p>Mathematics and calculations.</p><button class="secondary" onclick="openSubject('maths')">Study</button></div>
+<div class="card"><h3>📖 English Language</h3><p>Grammar and vocabulary.</p><button class="secondary" onclick="openSubject('english')">Study</button></div>
+<div class="card"><h3>हिंदी भाषा</h3><p>Hindi from beginner level.</p><button class="secondary" onclick="openSubject('hindi')">Study</button></div>
+</div>
+
+<div class="hero" id="lessonBox">
+<h3>Choose a Subject</h3>
+<p>Subject topics and lessons will appear here.</p>
+</div>
 </section>
 
 <section id="pyq" class="page">
 <div class="hero">
 <h2>📝 Previous Year Questions</h2>
-<div class="notice">Important: No verified official DSSSB MTS PYQs have been added yet. We will add questions only after confirming their exam year, shift and source.</div>
+<div class="notice">Official PYQs will be added only after verifying the exam year, date, shift and source. The practice questions in this website are not labelled as official PYQs.</div>
 <h3>PYQ Library</h3>
-<p>Each verified paper will include:</p>
-<ul><li>Exam year</li><li>Exam date and shift</li><li>Original question</li><li>Correct answer</li><li>Source reference</li></ul>
+<p>Verified papers will include:</p>
+<ul>
+<li>Exam name and year</li>
+<li>Exam date and shift</li>
+<li>Original question</li>
+<li>Correct answer and explanation</li>
+<li>Source reference</li>
+</ul>
+<p class="small">No verified official DSSSB MTS papers have been added yet.</p>
 </div>
 </section>
 
 <section id="mock" class="page">
 <div class="hero">
 <h2>⏱ Practice Mock Test</h2>
-<p>Demo test: 5 questions.</p>
-<p class="small">Practice scoring only: +1 correct, -0.25 wrong, 0 unanswered. Confirm the current official notification before using this as the real exam pattern.</p>
+<p>Demo test: 10 questions.</p>
+<div class="notice">Practice scoring: +1 for correct, -0.25 for wrong and 0 for unanswered. This is a demo test, not a confirmed official exam pattern.</div>
+<label>Your Name</label>
 <input id="student" placeholder="Enter your name" style="width:100%">
 <br><br>
 <button class="primary" onclick="startTest()">Start Test</button>
@@ -108,82 +127,195 @@ footer{text-align:center;padding:25px;color:#64748b}
 <h3>Test History</h3>
 <div id="history">No tests completed.</div>
 <button class="secondary" onclick="clearData()">Clear History</button>
-<p class="small">History is stored only in this browser on this device.</p>
+<p class="small">History is saved only in this browser on this device.</p>
 </div>
 </section>
 
 </main>
+
 <footer>DSSSB MTS ACADEMY | Learn Daily • Improve Daily</footer>
 
 <script>
-function show(id,btn){
- document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+function showPage(id,btn){
+ document.querySelectorAll('.page').forEach(function(p){
+  p.classList.remove('active');
+ });
  document.getElementById(id).classList.add('active');
- document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));
- if(btn)btn.classList.add('active');
- if(id==='progress')updateProgress();
+
+ document.querySelectorAll('nav button').forEach(function(b){
+  b.classList.remove('active');
+ });
+ if(btn) btn.classList.add('active');
+
+ if(id==='progress') updateProgress();
+ if(id==='study'){
+  document.getElementById('lessonBox').innerHTML =
+  '<h3>📚 Select Your Subject</h3><p>Choose one of the five subjects above and press Study.</p>';
+ }
 }
-const topics={
- reasoning:"<h3>General Intelligence Topics</h3><ul><li>Analogy</li><li>Number Series</li><li>Alphabet Series</li><li>Coding-Decoding</li><li>Classification</li><li>Blood Relations</li><li>Direction Sense</li><li>Non-verbal Reasoning</li></ul>",
- gk:"<h3>General Awareness Topics</h3><ul><li>Indian History</li><li>Indian Geography</li><li>Indian Constitution</li><li>Indian Economy</li><li>General Science</li><li>Current Affairs</li></ul>",
- maths:"<h3>Numerical Ability Topics</h3><ul><li>Number System</li><li>Simplification</li><li>Percentage</li><li>Ratio and Proportion</li><li>Average</li><li>Profit and Loss</li><li>Time and Work</li><li>Simple Interest</li></ul>",
- english:"<h3>English Topics</h3><ul><li>Parts of Speech</li><li>Tenses</li><li>Articles</li><li>Prepositions</li><li>Synonyms and Antonyms</li><li>Sentence Correction</li><li>Comprehension</li></ul>",
- hindi:"<h3>Hindi Beginner Topics</h3><ul><li>हिंदी वर्णमाला – Alphabet</li><li>सामान्य शब्द – Common Words</li><li>संज्ञा – Noun</li><li>सर्वनाम – Pronoun</li><li>क्रिया – Verb</li><li>विलोम शब्द – Antonyms</li><li>पर्यायवाची – Synonyms</li></ul>"
+
+const lessons={
+ reasoning:{
+  title:"General Intelligence",
+  topics:[
+   ["Analogy","Analogy means finding a relationship between two things. Example: Bird : Fly :: Fish : Swim. A bird flies and a fish swims. Telugu: రెండు పదాల మధ్య సంబంధాన్ని గుర్తించడం Analogy."],
+   ["Number Series","A number series is a sequence of numbers following a pattern. Example: 2, 4, 6, 8, 10. Each number increases by 2. Next number is 12."],
+   ["Alphabet Series","Alphabet series questions follow a letter pattern. Example: A, C, E, G. We skip one letter each time. The next letter is I."],
+   ["Coding-Decoding","In coding-decoding, letters or words are changed according to a rule. Example: If A=1, B=2, C=3, then CAT = 3,1,20."],
+   ["Classification","Classification means finding the odd item. Example: Apple, Mango, Banana, Carrot. Carrot is different because it is a vegetable."],
+   ["Direction Sense","Direction questions test movement and position. Remember: North is up, South is down, East is right and West is left on a standard map."]
+  ]
+ },
+ gk:{
+  title:"General Awareness",
+  topics:[
+   ["Indian Constitution","The Constitution of India came into effect on 26 January 1950. It is the supreme law of India. Telugu: భారత రాజ్యాంగం దేశంలోని అత్యున్నత చట్టం."],
+   ["Fundamental Rights","Fundamental Rights are basic rights guaranteed by the Constitution. They are included in Part III of the Constitution."],
+   ["Indian History","Ancient, Medieval and Modern History are major sections of Indian History. Study important rulers, movements and dates."],
+   ["Indian Geography","India is located in South Asia. The Himalayas are in the north, the Indian Ocean is in the south."],
+   ["General Science","General Science includes Physics, Chemistry and Biology. Study basic concepts, everyday science and important discoveries."],
+   ["Indian Economy","Learn basic concepts such as GDP, inflation, banking, budget, taxes and employment."]
+  ]
+ },
+ maths:{
+  title:"Numerical Ability",
+  topics:[
+   ["Number System","A number system is a way of representing numbers. Natural numbers: 1,2,3... Whole numbers: 0,1,2,3... Integers include negative numbers too."],
+   ["Percentage","Percentage means per hundred. Formula: Percentage = (Part / Total) × 100. Example: 20% of 200 = 20/100 × 200 = 40."],
+   ["Ratio","Ratio compares two quantities. Example: 2:3 means 2 parts compared with 3 parts."],
+   ["Average","Average = Sum of observations / Number of observations. Example: Average of 10, 20, 30 = 60/3 = 20."],
+   ["Profit and Loss","Profit = Selling Price - Cost Price. Loss = Cost Price - Selling Price. Profit percentage = Profit / Cost Price × 100."],
+   ["Simple Interest","Simple Interest = (Principal × Rate × Time) / 100. Example: P=1000, R=5%, T=2 years. SI = 100."]
+  ]
+ },
+ english:{
+  title:"English Language",
+  topics:[
+   ["Parts of Speech","There are eight traditional parts of speech: noun, pronoun, verb, adjective, adverb, preposition, conjunction and interjection."],
+   ["Noun","A noun is the name of a person, place, animal or thing. Examples: Ravi, Delhi, dog, book."],
+   ["Pronoun","A pronoun is used instead of a noun. Examples: I, we, you, he, she, it, they."],
+   ["Verb","A verb expresses an action or state. Examples: run, write, read, is, are."],
+   ["Articles","The articles are A, An and The. Use 'an' before a vowel sound, such as an apple. Use 'a' before a consonant sound, such as a book."],
+   ["Tenses","The three main tenses are Present, Past and Future. Example: I study, I studied, I will study."]
+  ]
+ },
+ hindi:{
+  title:"Hindi Language - Beginner",
+  topics:[
+   ["Hindi Alphabet","स्वर (Vowels): अ, आ, इ, ई, उ, ऊ, ऋ, ए, ऐ, ओ, औ. व्यंजन (Consonants): क, ख, ग, घ, च, छ, ज, झ."],
+   ["Common Words","पानी = Water, खाना = Food, घर = House, किताब = Book, आदमी = Man, लड़की = Girl."],
+   ["Noun - संज्ञा","किसी व्यक्ति, स्थान या वस्तु के नाम को संज्ञा कहते हैं। Example: राम, दिल्ली, किताब."],
+   ["Pronoun - सर्वनाम","संज्ञा के स्थान पर प्रयोग होने वाले शब्द सर्वनाम कहलाते हैं। Examples: मैं, हम, तुम, वह, वे."],
+   ["Verb - क्रिया","जिस शब्द से किसी काम का करना या होना पता चले, उसे क्रिया कहते हैं। Examples: खाना, पढ़ना, जाना."],
+   ["Antonyms - विलोम शब्द","दिन - रात, अच्छा - बुरा, छोटा - बड़ा, नया - पुराना."]
+  ]
+ }
 };
-function lesson(s){document.getElementById('lessonBox').innerHTML=topics[s];}
+
+function openSubject(subject){
+ const data=lessons[subject];
+ let html="<h2>📚 "+data.title+"</h2><p>Select a topic to read the lesson:</p>";
+ data.topics.forEach(function(topic,index){
+  html+="<button class='topic-btn' onclick='openLesson(\""+subject+"\","+index+")'>📖 "+(index+1)+". "+topic[0]+"</button>";
+ });
+ document.getElementById('lessonBox').innerHTML=html;
+ document.getElementById('lessonBox').scrollIntoView({behavior:'smooth'});
+}
+
+function openLesson(subject,index){
+ const topic=lessons[subject].topics[index];
+ let html="<h2>"+topic[0]+"</h2>";
+ html+="<div class='lesson-text'><p>"+topic[1]+"</p></div>";
+ html+="<button class='secondary' onclick='openSubject(\""+subject+"\")'>← Back to Topics</button>";
+ document.getElementById('lessonBox').innerHTML=html;
+ document.getElementById('lessonBox').scrollIntoView({behavior:'smooth'});
+}
 
 const questions=[
-{q:"Find the next number: 2, 4, 6, 8, ?",o:["9","10","12","14"],a:1,e:"Add 2 each time."},
-{q:"What is the capital of India?",o:["Mumbai","Chennai","New Delhi","Kolkata"],a:2,e:"New Delhi is the capital of India."},
-{q:"What is 20% of 200?",o:["20","30","40","50"],a:2,e:"20/100 × 200 = 40."},
-{q:"Choose the plural of Child.",o:["Childs","Children","Childes","Childrens"],a:1,e:"Children is the plural of child."},
-{q:"'पानी' means:",o:["Food","Water","House","Book"],a:1,e:"पानी means water."}
+ {q:"Find the next number: 2, 4, 6, 8, ?",o:["9","10","12","14"],a:1,e:"Each number increases by 2. Answer: 10."},
+ {q:"What is the capital of India?",o:["Mumbai","Chennai","New Delhi","Kolkata"],a:2,e:"New Delhi is the capital of India."},
+ {q:"What is 20% of 200?",o:["20","30","40","50"],a:2,e:"20/100 × 200 = 40."},
+ {q:"Choose the plural of Child.",o:["Childs","Children","Childes","Childrens"],a:1,e:"Children is the plural of child."},
+ {q:"'पानी' means:",o:["Food","Water","House","Book"],a:1,e:"पानी means water."},
+ {q:"Which is the largest planet?",o:["Earth","Mars","Jupiter","Venus"],a:2,e:"Jupiter is the largest planet in our Solar System."},
+ {q:"A, C, E, G, ?",o:["H","I","J","K"],a:1,e:"The series skips one letter. The next letter is I."},
+ {q:"Average of 10, 20 and 30?",o:["10","15","20","25"],a:2,e:"(10+20+30)/3 = 20."},
+ {q:"Which is a noun?",o:["Run","Beautiful","School","Quickly"],a:2,e:"School is the name of a place, so it is a noun."},
+ {q:"भारत का अर्थ क्या है?",o:["India","Water","Book","House"],a:0,e:"भारत means India."}
 ];
+
 let answers=[];
+
 function startTest(){
  answers=Array(questions.length).fill(null);
- let html="<div class='hero'><h2>Practice Questions</h2>";
- questions.forEach((q,i)=>{
- html+="<div class='question'><b>Q"+(i+1)+". "+q.q+"</b>";
- q.o.forEach((v,j)=>{
- html+="<label class='option'><input type='radio' name='q"+i+"' onchange='answers["+i+"]="+j+"'>"+v+"</label>";
- });
- html+="</div>";
+ let html="<div class='hero'><h2>Practice Test</h2><p>Questions: "+questions.length+"</p>";
+ questions.forEach(function(q,i){
+  html+="<div class='question'><b>Q"+(i+1)+". "+q.q+"</b>";
+  q.o.forEach(function(v,j){
+   html+="<label class='option'><input type='radio' name='q"+i+"' onchange='selectAnswer("+i+","+j+")'>"+v+"</label>";
+  });
+  html+="</div>";
  });
  html+="<button class='primary' onclick='submitTest()'>Submit Test</button></div>";
  document.getElementById('testArea').innerHTML=html;
+ document.getElementById('testArea').scrollIntoView({behavior:'smooth'});
 }
+
+function selectAnswer(i,j){
+ answers[i]=j;
+}
+
 function submitTest(){
  let correct=0,wrong=0,unanswered=0;
- questions.forEach((q,i)=>{
- if(answers[i]===null)unanswered++;
- else if(answers[i]===q.a)correct++;
- else wrong++;
+ questions.forEach(function(q,i){
+  if(answers[i]===null) unanswered++;
+  else if(answers[i]===q.a) correct++;
+  else wrong++;
  });
- let score=correct-wrong*.25;
+ let score=correct-(wrong*0.25);
+ let record={
+  name:document.getElementById('student').value.trim()||'Student',
+  date:new Date().toLocaleString(),
+  correct:correct,
+  wrong:wrong,
+  unanswered:unanswered,
+  score:Number(score.toFixed(2))
+ };
  let data=JSON.parse(localStorage.getItem('academyHistory')||'[]');
- data.push({name:document.getElementById('student').value||'Student',date:new Date().toLocaleString(),correct,wrong,unanswered,score:Number(score.toFixed(2))});
+ data.push(record);
  localStorage.setItem('academyHistory',JSON.stringify(data));
- let html="<div class='hero'><h2>Your Result</h2><div class='stat'>"+score.toFixed(2)+" / 5</div><p>Correct: "+correct+"</p><p>Wrong: "+wrong+"</p><p>Unanswered: "+unanswered+"</p><hr><h3>Answer Review</h3>";
- questions.forEach((q,i)=>{
- html+="<div class='question'><b>"+(i+1)+". "+q.q+"</b><p>Your answer: "+(answers[i]===null?"Not answered":q.o[answers[i]])+"</p><p>Correct answer: <b>"+q.o[q.a]+"</b></p><p>"+q.e+"</p></div>";
+
+ let html="<div class='hero'><h2>🎉 Your Result</h2>";
+ html+="<div class='stat'>"+record.score+" / "+questions.length+"</div>";
+ html+="<p>Correct: "+correct+"</p><p>Wrong: "+wrong+"</p><p>Unanswered: "+unanswered+"</p><hr><h3>Answer Review</h3>";
+ questions.forEach(function(q,i){
+  html+="<div class='question'><b>Q"+(i+1)+". "+q.q+"</b>";
+  html+="<p>Your answer: "+(answers[i]===null?'Not answered':q.o[answers[i]])+"</p>";
+  html+="<p>Correct answer: <b>"+q.o[q.a]+"</b></p>";
+  html+="<p>"+q.e+"</p></div>";
  });
  html+="<button class='primary' onclick='startTest()'>Try Again</button></div>";
  document.getElementById('testArea').innerHTML=html;
 }
+
 function updateProgress(){
- let d=JSON.parse(localStorage.getItem('academyHistory')||'[]');
- document.getElementById('total').textContent=d.length;
- document.getElementById('best').textContent=d.length?Math.max(...d.map(x=>x.score)):'0';
- document.getElementById('latest').textContent=d.length?d[d.length-1].score:'0';
- document.getElementById('history').innerHTML=d.length?d.slice().reverse().map(x=>"<div class='question'><b>"+x.name+"</b><p>"+x.date+"</p><p>Score: "+x.score+" | Correct: "+x.correct+" | Wrong: "+x.wrong+"</p></div>").join(''):"No tests completed.";
+ let data=JSON.parse(localStorage.getItem('academyHistory')||'[]');
+ document.getElementById('total').textContent=data.length;
+ document.getElementById('best').textContent=data.length?Math.max(...data.map(x=>x.score)):'0';
+ document.getElementById('latest').textContent=data.length?data[data.length-1].score:'0';
+ document.getElementById('history').innerHTML=data.length?
+ data.slice().reverse().map(function(x){
+  return "<div class='question'><b>"+x.name+"</b><p>"+x.date+"</p><p>Score: "+x.score+" | Correct: "+x.correct+" | Wrong: "+x.wrong+"</p></div>";
+ }).join(''):"No tests completed.";
 }
+
 function clearData(){
  if(confirm('Delete all test history?')){
- localStorage.removeItem('academyHistory');
- updateProgress();
+  localStorage.removeItem('academyHistory');
+  updateProgress();
  }
 }
+
 updateProgress();
 </script>
 </body>
